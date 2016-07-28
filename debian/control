@@ -13,11 +13,18 @@ Homepage: https://github.com/pothosware/SoapyRTLSDR/wiki
 Vcs-Git: https://github.com/pothosware/SoapyRTLSDR.git
 Vcs-Browser: https://github.com/pothosware/SoapyRTLSDR
 
-Package: soapysdr-rtlsdr
+Package: soapysdr-module-rtlsdr0.5-3
 Section: libs
 Architecture: any
-Conflicts: soapyosmo-rtlsdr
-Replaces: soapyosmo-rtlsdr
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Soapy RTL-SDR - RTL-SDR device support for Soapy SDR.
+ A Soapy module that supports RTL-SDR devices within the Soapy API.
+ 
+Package: soapysdr-module-rtlsdr
+Section: libs
+Architecture: any
+Conflicts: soapyosmo-rtlsdr, soapysdr-rtlsdr
+Replaces: soapyosmo-rtlsdr, soapysdr-rtlsdr
+Depends: soapysdr-module-rtlsdr0.5-3, ${misc:Depends}
 Description: Soapy RTL-SDR - RTL-SDR device support for Soapy SDR.
  A Soapy module that supports RTL-SDR devices within the Soapy API.
