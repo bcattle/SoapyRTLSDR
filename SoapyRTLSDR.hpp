@@ -1,6 +1,6 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2015 Charles J. Cliffe
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -206,6 +206,18 @@ public:
     void writeSetting(const std::string &key, const std::string &value);
 
     std::string readSetting(const std::string &key) const;
+
+
+    /*******************************************************************
+     * GPIO API
+     ******************************************************************/
+
+    void writeGPIO(const unsigned bit, const unsigned value);
+
+    unsigned readGPIO() const;
+
+    void writeGPIODir(const unsigned bit, const bool isOutput);
+
 
 private:
 

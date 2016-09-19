@@ -1,6 +1,6 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2015 Charles J. Cliffe
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -663,3 +663,29 @@ rtlsdr_tuner SoapyRTLSDR::rtlStringToTuner(std::string tunerType)
     return deviceTuner;
 }
 
+
+/*******************************************************************
+ * GPIO API
+ ******************************************************************/
+
+void SoapyRTLSDR::writeGPIO(const unsigned bit, const unsigned value) {
+  int ret = 0;
+  ret = rtlsdr_set_gpio_bit(dev, bit, value);
+  if (ret != 0) throw std::runtime_error("writeGPIO() error " + std::to_string(ret));
+}
+
+unsigned SoapyRTLSDR::readGPIO() const {
+  uint8_t value = 0;
+  rtlsdr_get_gpio_byte(dev, &value);
+  return value;
+}
+
+void SoapyRTLSDR::writeGPIODir(const unsigned bit, const bool isOutput) {
+  int ret = 0;
+  if (isOutput) {
+    ret = rtlsdr_set_gpio_output(dev, bit);
+  } else {
+    ret = rtlsdr_set_gpio_input(dev, bit);
+  }
+  if (ret != 0) throw std::runtime_error("writeGPIODir() error " + std::to_string(ret));
+}
