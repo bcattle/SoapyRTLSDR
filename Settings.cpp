@@ -671,7 +671,7 @@ rtlsdr_tuner SoapyRTLSDR::rtlStringToTuner(std::string tunerType)
 void SoapyRTLSDR::writeGPIO(const unsigned bit, const unsigned value) {
   int ret = 0;
   ret = rtlsdr_set_gpio_bit(dev, bit, value);
-  if (ret != 0) throw std::runtime_error("writeGPIO() error " + std::to_string(ret));
+  if (ret < 0) throw std::runtime_error("writeGPIO() error " + std::to_string(ret));
 }
 
 unsigned SoapyRTLSDR::readGPIO() const {
@@ -687,5 +687,5 @@ void SoapyRTLSDR::writeGPIODir(const unsigned bit, const bool isOutput) {
   } else {
     ret = rtlsdr_set_gpio_input(dev, bit);
   }
-  if (ret != 0) throw std::runtime_error("writeGPIODir() error " + std::to_string(ret));
+  if (ret < 0) throw std::runtime_error("writeGPIODir() error " + std::to_string(ret));
 }
